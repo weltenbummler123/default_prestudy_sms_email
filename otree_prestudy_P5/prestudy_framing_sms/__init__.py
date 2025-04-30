@@ -20,10 +20,10 @@ def creating_session(subsession): # Just for testing treatment allocation, will 
 
     # Create a list of image paths and shuffle it in place
     opt_out_images = [
-        'images/opt_out_warten_bestaetigen.png',
-        'images/opt_out_warten_zusagen.png',
-        'images/opt_out_bereit_bestaetigen.png',
-        'images/opt_out_bereit_zusagen.png'
+        'global/opt_out_warten_bestaetigen.png',
+        'global/opt_out_warten_zusagen.png',
+        'global/opt_out_bereit_bestaetigen.png',
+        'global/opt_out_bereit_zusagen.png'
     ]
 
     for player in subsession.get_players():
@@ -164,7 +164,7 @@ class FormalInformal(Page):
 
     def vars_for_template(player: Player):
 
-        image_file = 'images/duSie.png'
+        image_file = 'global/duSie.png'
 
         return dict(
             image_file=image_file,
