@@ -1,0 +1,71 @@
+{{ block title }}
+
+
+    <p style="text-align: center; font-size: 26px; "> Abschließende Fragen </p>
+
+{{ endblock }}
+
+{{ block style }}
+
+    <style>
+
+        body {
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin-top: 4vw;
+            background-color: #f4f4f4;
+        }
+
+    </style>
+
+{{ endblock }}
+
+{{ block content }}
+
+    <style>
+        label[for="id_born"] {
+            display: none;
+        }
+    </style>
+
+
+<div class="card-body">
+
+<!--    <p>-->
+<!--        Please answer the following questions. These are used for demographic purposes only.-->
+<!--        This information will not be associated with your name. You remain anonymous to all the other players and the experimenters.-->
+<!--    </p>-->
+
+
+    {{ formfield 'age' }}
+    {{ formfield 'gender' }}
+
+    {{ live_question }}
+    {{ form.live }}
+    <br>
+    {{ grow_up_question }}
+    {{ form.grow_up }}
+
+    {{ formfield 'region' }}
+
+    {{ formfield 'rural' }}
+
+    {{ donate_blood_ever_question }}
+    {{ form.donate_blood_ever }}
+    <br>
+    {{ donate_blood_last_2_years_question }}
+    {{ form.donate_blood_last_2_years }}
+
+
+
+
+
+    <div style="display: flex; justify-content: flex-end">
+        {% next_button %}
+    </div>
+
+</div>
+
+
+{{ endblock }}
