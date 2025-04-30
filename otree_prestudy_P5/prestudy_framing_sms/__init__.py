@@ -128,12 +128,12 @@ class DefaultSMSPage(Page):
 
         if opt_in_first:
             if player.round_number == 1:
-                image_file = 'images/opt_in.png'
+                image_file = 'global/minus_button.png'
             else:
                 image_file = player.participant.opt_out_shuffled[player.round_number - 2]
         else:
             if player.round_number == 5:
-                image_file = 'images/opt_in.png'
+                image_file = 'global/minus_button.png'
             else:
                 image_file = player.participant.opt_out_shuffled[player.round_number-1]
 
