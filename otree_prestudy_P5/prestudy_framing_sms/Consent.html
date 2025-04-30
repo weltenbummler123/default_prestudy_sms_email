@@ -1,0 +1,88 @@
+{% block title %}
+
+<!--    <div style="display: flex; justify-content: flex-end">-->
+<!--        <img/>-->
+<!--    </div>-->
+
+
+<p style="text-align: center; font-size: 26px;  "> Willkommen! </p>
+
+{% endblock %}
+
+{{ block style }}
+
+    <style>
+
+        body {
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin-top: 4vw;
+            background-color: #f4f4f4;
+        }
+
+    </style>
+
+{{ endblock }}
+
+
+{% block content %}
+
+<div class="card-body">
+
+  <div>
+      <p>
+      Vielen Dank, dass Sie an dieser kurzen Umfrage teilnehmen!
+      </p>
+
+      <h6><u>Was als Nächstes passiert</u></h6>
+
+      <ul>
+        <li>Nach Ihrer Einwilligung können Sie <b> sofort starten.</b></li>
+          <li>Bitte lesen Sie die Fragen <b>sorgfältig</b> durch.</li>
+        <li> Die Studie besteht aus <b>sechs Hauptfragen</b> und dauert etwa <b>10 Minuten</b>. </li>
+      </ul>
+
+  <!--    {{C.NUM_ROUNDS}}-->
+
+      <h6><u>Vergütung</u></h6>
+
+      <ul>
+        <li>Für Ihre Teilnahme erhalten Sie <b>{{ participation_fee }}</b>. </li>
+      </ul>
+
+      <h6><u>Weitere Informationen</u></h6>
+
+      <ul>
+        <li>Die Teilnahme ist <b>freiwillig</b>. Sie können die Studie jederzeit abbrechen; in diesem Fall werden Ihre Daten gelöscht. Eine Vergütung erfolgt nur bei vollständiger Teilnahme.</li>
+        <li>Ihre <b>Anonymität</b> ist während der gesamten Studie gewährleistet – sowohl gegenüber anderen Teilnehmenden als auch gegenüber den Forschenden.</li>
+        <li>Alle Daten werden ausschließlich für <b>wissenschaftliche Zwecke</b> verwendet.</li>
+      </ul>
+
+
+      <p> <b>
+          Mit einem Klick auf „ICH STIMME ZU“ bestätigen Sie, dass Sie die obigen Informationen gelesen und verstanden haben und an der Studie teilnehmen möchten.
+
+      </b>
+      </p>
+
+      <p>
+          Bei Fragen, Anmerkungen oder Hinweisen wenden Sie sich bitte an: Joris Schröder (<a href="mailto:joris.schroeder@nottingham.ac.uk">joris.schroeder@nottingham.ac.uk </a>) oder Caroline Graf(<a href="mailto:caroline.graf@uzh.ch"> caroline.graf@uzh.ch </a>)
+      </p>
+      <p>
+          Joris Schröder, Caroline Graf and Pascal Güntürkün <br>
+          University of Nottingham, Universität Zurich, and Wirtschaftsuniversität Wien <br>
+  <!--        <img/>-->
+      </p>
+
+    </div>
+
+     <div style="display: flex; justify-content: flex-end">
+        <button style="color: #fff; background-color: #b08600; border: 1px solid transparent; font-size: 1rem; border-radius: 0.25rem;">
+            ICH STIMME ZU
+        </button>
+    </div>
+
+</div>
+
+{% endblock %}
