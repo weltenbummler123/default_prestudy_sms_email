@@ -1,0 +1,131 @@
+{{ block title }}
+
+    <p style="text-align: center; font-size: 26px; "> Frage 6  </p>
+
+
+{{ endblock }}
+
+{{ block style }}
+
+    <style>
+
+        body {
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin-top: 4vw;
+            background-color: #f4f4f4;
+        }
+
+        .responsive-div {
+            width: 90%; /* Default width */
+            transform-origin: top left; /* Ensure scaling starts from top-left */
+            transform: scale(1); /* Default scale */
+            transition: transform 0.3s ease; /* Smooth scaling */
+            border:0px solid black;
+            margin-left:auto;
+            margin-right:auto;
+        }
+
+        .slider-labels span {
+            flex: 1;
+            text-align: center;
+        }
+
+        .slider-container {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .figure-container {
+            width:75%;
+            /*height:21vw;*/
+            /* top:2vw; */
+            margin-left:auto;
+            margin-right:auto;
+            text-align:center;
+            border:0px solid black;
+            position:relative;
+        }
+
+        @media (max-width: 1200px) { /* adjustments for smaller screens */
+        .responsive-div {
+            transform: scale(1.0); /* Scale to 80% for smaller screens */
+        }
+        .container {
+            width:80%; /* otherwise used margin-left:1vw; */
+        }
+        .figure-container {
+            width:80%; /* otherwise used margin-left:1vw; */
+        }
+    }
+
+    @media (max-width: 600px) {
+        .responsive-div {
+            transform: scale(1.0); /* adjustments for smartphones */
+        }
+        .container {
+            width:90%; /* otherwise used margin-left:1vw; */
+        }
+        .figure-container {
+            transform: scale(1.0); /* Scale up the figure elements */
+            min-width:10px;
+        }
+    }
+
+    </style>
+
+{{ endblock }}
+
+{{ block content }}
+
+<body style="background-color: #ffffffff;">
+
+<div class="card-body" >
+
+    <p style="text-align: center; margin-bottom: 0px;">
+            {{intro}}
+        </p>
+
+    <div class="figure-container">
+
+        <div style="display: flex; justify-content: center; align-items: center; ">
+            <img src="{{ static image_file }}" alt="Image for this round" style="width:50vw; position: relative; ">
+        </div>
+    </div>
+
+
+    <div class="responsive-div">
+
+        <br>
+
+        <p style="text-align: center; margin-bottom: 0px;">
+            <strong>{{duSie_q}}</strong>
+        </p>
+
+        <div class="slider-container" style="display: flex; align-items: center; flex-grow: 1; ">
+            <span >
+                Sehr stark „Sie“
+            </span>
+                {{ formfield 'duSie' }}
+            <span>
+                Sehr stark „du“
+            </span>
+        </div>
+
+
+
+    </div>
+
+        <div style="display: flex; justify-content: flex-end">
+            {% next_button %}
+        </div>
+
+
+</div>
+
+</body>
+
+
+{{ endblock }}
