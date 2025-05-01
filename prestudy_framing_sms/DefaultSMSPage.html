@@ -38,41 +38,21 @@
             margin: auto;
         }
 
-        .figure-container {
-            width:75%;
-            /*height:21vw;*/
-            /* top:2vw; */
-            margin-left:auto;
-            margin-right:auto;
-            text-align:center;
-            border:0px solid black;
-            position:relative;
+
+        .label-left {
+            margin-right: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
-        @media (max-width: 1200px) { /* adjustments for smaller screens */
-        .responsive-div {
-            transform: scale(1.0); /* Scale to 80% for smaller screens */
+        .label-right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
-        .container {
-            width:80%; /* otherwise used margin-left:1vw; */
-        }
-        .figure-container {
-            width:80%; /* otherwise used margin-left:1vw; */
-        }
-    }
-
-    @media (max-width: 600px) {
-        .responsive-div {
-            transform: scale(1.0); /* adjustments for smartphones */
-        }
-        .container {
-            width:90%; /* otherwise used margin-left:1vw; */
-        }
-        .figure-container {
-            transform: scale(1.0); /* Scale up the figure elements */
-            min-width:10px;
-        }
-    }
 
     </style>
 
@@ -86,13 +66,10 @@
 
     <p style="text-align: center; margin-bottom: 0px;">
             {{intro}}
-        </p>
+    </p>
 
-    <div class="figure-container">
-
-        <div style="display: flex; justify-content: center; align-items: center; ">
-            <img src="{{ static image_file }}" alt="Image for this round" style="width:22vw; position: relative; ">
-        </div>
+    <div style="display: flex; justify-content: center; align-items: center; ">
+        <img src="{{ static image_file }}" alt="Image for this round" style="width:300px; position: relative; ">
     </div>
 
 
@@ -100,18 +77,20 @@
 
         <br>
 
+         <hr>
+
             <p style="text-align: center; margin-bottom: 0px;">
                 <strong>{{manip1_q}}</strong>
             </p>
 
 
         <div class="slider-container" style="display: flex; align-items: center; flex-grow: 1; ">
-            <span style="margin-right: 15px; ">
-                Überhaupt nicht
+            <span class="label-left">
+                Überhaupt nicht<br>(1)
             </span>
                 {{ formfield 'manip1' }}
-            <span>
-                Sehr stark
+            <span class="label-right">
+                Sehr stark<br>(7)
             </span>
         </div>
 
@@ -122,12 +101,12 @@
         </p>
 
         <div class="slider-container" style="display: flex; align-items: center; flex-grow: 1; ">
-            <span style="margin-right: 15px; ">
-                Überhaupt nicht
+            <span class="label-left">
+                Überhaupt nicht<br>(1)
             </span>
                 {{ formfield 'manip2' }}
-            <span>
-                Sehr stark
+            <span class="label-right">
+                Sehr stark<br>(7)
             </span>
         </div>
 
@@ -138,12 +117,12 @@
         </p>
 
         <div class="slider-container" style="display: flex; align-items: center; flex-grow: 1; ">
-            <span style="margin-right: 15px; ">
-                Überhaupt nicht
+            <span class="label-left">
+                Überhaupt nicht<br>(1)
             </span>
                 {{ formfield 'threat_freedom' }}
-            <span>
-                Sehr stark
+            <span class="label-right">
+                Sehr stark<br>(7)
             </span>
         </div>
 
@@ -154,12 +133,12 @@
         </p>
 
         <div class="slider-container" style="display: flex; align-items: center; flex-grow: 1; ">
-            <span style="margin-right: 15px; ">
-                Überhaupt nicht
+            <span class="label-left">
+                Überhaupt nicht<br>(1)
             </span>
                 {{ formfield 'anger' }}
-            <span>
-                Sehr stark
+            <span class="label-right">
+                Sehr stark<br>(7)
             </span>
         </div>
 
@@ -170,12 +149,12 @@
         </p>
 
         <div class="slider-container" style="display: flex; align-items: center; flex-grow: 1; ">
-            <span style="margin-right: 15px; ">
-                Überhaupt nicht
+            <span class="label-left">
+                Überhaupt nicht<br>(1)
             </span>
                 {{ formfield 'understanding' }}
-            <span>
-                Sehr stark
+            <span class="label-right">
+                Sehr stark<br>(7)
             </span>
         </div>
 
@@ -186,14 +165,15 @@
         </p>
 
         <div class="slider-container" style="display: flex; align-items: center; flex-grow: 1; ">
-            <span style="margin-right: 15px; ">
-                Überhaupt nicht
+            <span class="label-left">
+                Überhaupt nicht<br>(1)
             </span>
                 {{ formfield 'intention' }}
-            <span>
-                Sehr stark
+            <span class="label-right">
+                Sehr stark<br>(7)
             </span>
         </div>
+
 
 
 

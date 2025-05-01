@@ -1,6 +1,4 @@
 from otree.api import *
-import csv
-import os
 
 doc = """
 Your app description
@@ -33,7 +31,7 @@ class Player(BasePlayer):
     ## Demographics
     age = models.IntegerField(
         verbose_name='Wie alt sind Sie?',
-        min=0, max=100
+        min=0, max=100,
     )
     gender = models.StringField(
         choices=['Weiblich', 'Männlich', 'Divers', 'Keine Angabe'],
@@ -49,8 +47,24 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect
     )
     region = models.StringField(
-        verbose_name='In welchem Bundesland leben Sie?',
+        verbose_name='',
     )
+    # region = models.StringField(
+    #     label="In welchem Bundesland wohnen Sie?",
+    #     choices=[
+    #         'Burgenland',
+    #         'Kärnten',
+    #         'Niederösterreich',
+    #         'Oberösterreich',
+    #         'Salzburg',
+    #         'Steiermark',
+    #         'Tirol',
+    #         'Vorarlberg',
+    #         'Wien',
+    #         'Ich wohne nicht in Österreich.'
+    #     ],
+    #     widget=widgets.Dropdown,
+    # )
     donate_blood_ever = models.StringField(
         choices=['Ja', 'Nein'],
         widget=widgets.RadioSelect
@@ -103,10 +117,20 @@ class Demographics(Page):
     form_model = 'player'
     form_fields = ['age', 'gender','live', 'grow_up', 'region', 'rural', 'donate_blood_ever', 'donate_blood_last_2_years']
 
+    def error_message(self, values):
+        # 'values' is a dictionary like {'age': 25}
+        if values['age'] is not None:  # Check if a value was entered
+            if values['age'] < 0:
+                # Return a dictionary mapping field name to error message
+                return {'age': 'Das Alter muss größer oder gleich 0 sein.'}
+            if values['age'] > 100:
+                return {'age': 'Das Alter muss kleiner oder gleich 100 sein.'}
+
     def vars_for_template(player: Player):
 
         return {
-            'live_question': f"Leben Sie in Österreich?",
+            'live_question': f"Wohnen Sie in Österreich?",
+            'region_question': "In welchem Bundesland wohnen Sie?",
             'grow_up_question': f"Sind Sie in Österreich aufgewachsen?",
             'donate_blood_ever_question': f"Haben Sie schon einmal Blut gespendet?",
             'donate_blood_last_2_years_question': f"Haben Sie in den letzten 2 Jahren Blut gespendet?",
