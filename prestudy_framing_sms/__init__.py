@@ -152,15 +152,13 @@ class DefaultSMSPage(Page):
             intention_q='Inwieweit motiviert Sie diese Nachricht, Blut zu spenden?',
         )
 
-    # def before_next_page(player: Player):
-    #     player.treatment = image_file
 
 
 class FormalInformal(Page):
 
     @staticmethod
     def is_displayed(player: Player):
-        if player.round_number == 5:
+        if player.round_number == 1:
             return True
         else:
             return False
@@ -171,16 +169,12 @@ class FormalInformal(Page):
     def vars_for_template(player: Player):
 
         image_file = 'global/duSie.png'
-        player.treatment = image_file.split('/')[-1].split('.')[0]
 
         return dict(
             image_file=image_file,
             intro='Stellen Sie sich vor, Sie erhalten folgende SMS-Nachrichten, die Sie zur Blutspende einladen. <br> <b> Bitte lesen Sie die Nachrichten aufmerksam durch und bewerten Sie anschließend die unten stehende Aussage dazu.</b> <br> <br>',
             duSie_q = 'Würden Sie lieber mit „Sie“ (links) oder mit „du“ (rechts) angesprochen werden?',
         )
-
-    # def before_next_page(player: Player):
-    #     player.treatment = image_file
 
 
 class ResultsWaitPage(WaitPage):
@@ -192,6 +186,6 @@ class Results(Page):
 
 
 page_sequence = [Consent,
-                 DefaultSMSPage,
                  FormalInformal,
+                 DefaultSMSPage,
                  ]
