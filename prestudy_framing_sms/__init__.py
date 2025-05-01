@@ -158,7 +158,7 @@ class FormalInformal(Page):
 
     @staticmethod
     def is_displayed(player: Player):
-        if player.round_number == 1:
+        if player.round_number == 5:
             return True
         else:
             return False
@@ -186,6 +186,6 @@ class Results(Page):
 
 
 page_sequence = [Consent,
-                 FormalInformal,
                  DefaultSMSPage,
+                 FormalInformal,
                  ]
