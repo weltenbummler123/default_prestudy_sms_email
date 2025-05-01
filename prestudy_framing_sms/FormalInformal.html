@@ -38,41 +38,21 @@
             margin: auto;
         }
 
-        .figure-container {
-            width:75%;
-            /*height:21vw;*/
-            /* top:2vw; */
-            margin-left:auto;
-            margin-right:auto;
-            text-align:center;
-            border:0px solid black;
-            position:relative;
+        .label-left {
+            margin-right: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
-        @media (max-width: 1200px) { /* adjustments for smaller screens */
-        .responsive-div {
-            transform: scale(1.0); /* Scale to 80% for smaller screens */
+        .label-right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
-        .container {
-            width:80%; /* otherwise used margin-left:1vw; */
-        }
-        .figure-container {
-            width:80%; /* otherwise used margin-left:1vw; */
-        }
-    }
 
-    @media (max-width: 600px) {
-        .responsive-div {
-            transform: scale(1.0); /* adjustments for smartphones */
-        }
-        .container {
-            width:90%; /* otherwise used margin-left:1vw; */
-        }
-        .figure-container {
-            transform: scale(1.0); /* Scale up the figure elements */
-            min-width:10px;
-        }
-    }
 
     </style>
 
@@ -82,17 +62,16 @@
 
 <body style="background-color: #ffffffff;">
 
-<div class="card-body" >
+    <div class="card-body" >
 
-    <p style="text-align: center; margin-bottom: 0px;">
+        <p style="text-align: center; margin-bottom: 0px;">
             {{intro}}
         </p>
 
-    <div class="figure-container">
-
         <div style="display: flex; justify-content: center; align-items: center; ">
-            <img src="{{ static image_file }}" alt="Image for this round" style="width:50vw; position: relative; ">
+            <img src="{{ static image_file }}" alt="Image for this round" style="width:450px; position: relative; ">
         </div>
+
     </div>
 
 
@@ -105,12 +84,12 @@
         </p>
 
         <div class="slider-container" style="display: flex; align-items: center; flex-grow: 1; ">
-            <span >
-                Sehr stark „Sie“
+            <span class="label-left">
+                Sehr stark „Sie“<br>(1)
             </span>
                 {{ formfield 'duSie' }}
-            <span>
-                Sehr stark „du“
+            <span class="label-right">
+                Sehr stark „du“<br>(7)
             </span>
         </div>
 

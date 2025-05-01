@@ -44,6 +44,10 @@ SESSION_FIELDS = []
 # for example: de, fr, ja, ko, zh-hans
 LANGUAGE_CODE = 'de'
 
+USE_I18N = True  # Enables the translation system
+
+USE_L10N = True  # Enables locale-specific formatting (dates, numbers)
+
 # e.g. EUR, GBP, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = 'EUR'
 USE_POINTS = True

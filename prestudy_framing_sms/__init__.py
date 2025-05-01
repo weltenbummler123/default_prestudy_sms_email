@@ -16,7 +16,7 @@ class C(BaseConstants):
 class Subsession(BaseSubsession):
     pass
 
-def creating_session(subsession): # Just for testing treatment allocation, will eventually me moved to create-session in baseline trials
+def creating_session(subsession):
 
     # Create a list of image paths and shuffle it in place
     opt_out_images = [
@@ -50,13 +50,6 @@ class Player(BasePlayer):
     #     verbose_name='',
     #     widget=widgets.RadioSelectHorizontal
     # )
-    intention = models.IntegerField(
-        choices=[
-            [1, '1'], [2, '2'], [3, '3'], [4, '4'], [5, '5'], [6, '6'], [7, '7'],
-        ],
-        verbose_name='',
-        widget=widgets.RadioSelectHorizontal,
-    )
     manip1 = models.IntegerField(
         choices=[
             [1, '1'], [2, '2'], [3, '3'], [4, '4'], [5, '5'], [6, '6'], [7, '7'],
@@ -92,6 +85,13 @@ class Player(BasePlayer):
         verbose_name='',
         widget=widgets.RadioSelectHorizontal
     )
+    intention = models.IntegerField(
+        choices=[
+            [1, '1'], [2, '2'], [3, '3'], [4, '4'], [5, '5'], [6, '6'], [7, '7'],
+        ],
+        verbose_name='',
+        widget=widgets.RadioSelectHorizontal,
+    )
     duSie = models.IntegerField(
         choices=[
             [1, '1'], [2, '2'], [3, '3'], [4, '4'], [5, '5'], [6, '6'], [7, '7'],
@@ -99,6 +99,7 @@ class Player(BasePlayer):
         verbose_name='',
         widget=widgets.RadioSelectHorizontal
     )
+    treatment = models.StringField()
 
 
 ##### PAGES
@@ -137,17 +138,22 @@ class DefaultSMSPage(Page):
             else:
                 image_file = player.participant.opt_out_shuffled[player.round_number-1]
 
+        player.treatment = image_file.split('/')[-1].split('.')[0] # Save treatment
 
         return dict(
             image_file=image_file,
-            intro = 'Stellen Sie sich vor, Sie erhalten folgende SMS-Nachricht, die Sie zur Blutspende einlädt. <br> <b> Bitte lesen Sie den Text aufmerksam durch und bewerten Sie anschließend die unten stehenden Aussagen dazu.</b> <br> <br>',
+            intro = 'Stellen Sie sich vor, Sie erhalten folgende SMS-Nachricht, die Sie zur Blutspende einlädt. <br> <b> Bitte lesen Sie die Nachricht aufmerksam durch und bewerten Sie anschließend die unten stehenden Aussagen dazu.</b> <br> <br>',
+            #intro2 = 'Bitte bewerten Sie die unten stehenden Aussagen zur SMS',
             manip1_q = 'Ich habe das Gefühl, dass die Nachricht davon ausgeht, dass ich bereits beabsichtige, einen Blutspendetermin wahrzunehmen.',
             manip2_q = 'Ich habe das Gefühl, dass die Nachricht impliziert, dass eine Blutspende für mich der normale bzw. vorgesehene nächste Schritt ist.',
             threat_freedom_q='Die Nachricht hat versucht, mich unter Druck zu setzen.',
             anger_q='Die Nachricht hat mich genervt.',
             understanding_q='Ich habe klar verstanden, was die Nachricht sagen wollte.',
-            intention_q='Inwieweit motiviert Sie diese Nachricht, einen Blutspendetermin wahrzunehmen?',
+            intention_q='Inwieweit motiviert Sie diese Nachricht, Blut zu spenden?',
         )
+
+    # def before_next_page(player: Player):
+    #     player.treatment = image_file
 
 
 class FormalInformal(Page):
@@ -165,12 +171,16 @@ class FormalInformal(Page):
     def vars_for_template(player: Player):
 
         image_file = 'global/duSie.png'
+        player.treatment = image_file.split('/')[-1].split('.')[0]
 
         return dict(
             image_file=image_file,
-            intro='Stellen Sie sich vor, Sie erhalten folgende SMS-Nachrichten, die Sie zur Blutspende einladen. <br> <b> Bitte lesen Sie den Text aufmerksam durch und bewerten Sie anschließend die unten stehenden Aussagen dazu.</b> <br> <br>',
+            intro='Stellen Sie sich vor, Sie erhalten folgende SMS-Nachrichten, die Sie zur Blutspende einladen. <br> <b> Bitte lesen Sie die Nachrichten aufmerksam durch und bewerten Sie anschließend die unten stehende Aussage dazu.</b> <br> <br>',
             duSie_q = 'Würden Sie lieber mit „Sie“ (links) oder mit „du“ (rechts) angesprochen werden?',
         )
+
+    # def before_next_page(player: Player):
+    #     player.treatment = image_file
 
 
 class ResultsWaitPage(WaitPage):
@@ -183,4 +193,5 @@ class Results(Page):
 
 page_sequence = [Consent,
                  DefaultSMSPage,
-                 FormalInformal]
+                 FormalInformal,
+                 ]
