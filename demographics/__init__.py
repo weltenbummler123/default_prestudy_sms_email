@@ -31,7 +31,7 @@ class Player(BasePlayer):
     ## Demographics
     age = models.IntegerField(
         verbose_name='Wie alt sind Sie?',
-        min=0, max=100,
+        min=18, max=100,
     )
     gender = models.StringField(
         choices=['Weiblich', 'Männlich', 'Divers', 'Keine Angabe'],

@@ -50,6 +50,13 @@ class Player(BasePlayer):
     #     verbose_name='',
     #     widget=widgets.RadioSelectHorizontal
     # )
+    intention = models.IntegerField(
+        choices=[
+            [1, '1'], [2, '2'], [3, '3'], [4, '4'], [5, '5'], [6, '6'], [7, '7'],
+        ],
+        verbose_name='',
+        widget=widgets.RadioSelectHorizontal,
+    )
     manip1 = models.IntegerField(
         choices=[
             [1, '1'], [2, '2'], [3, '3'], [4, '4'], [5, '5'], [6, '6'], [7, '7'],
@@ -85,13 +92,6 @@ class Player(BasePlayer):
         verbose_name='',
         widget=widgets.RadioSelectHorizontal
     )
-    intention = models.IntegerField(
-        choices=[
-            [1, '1'], [2, '2'], [3, '3'], [4, '4'], [5, '5'], [6, '6'], [7, '7'],
-        ],
-        verbose_name='',
-        widget=widgets.RadioSelectHorizontal,
-    )
     duSie = models.IntegerField(
         choices=[
             [1, '1'], [2, '2'], [3, '3'], [4, '4'], [5, '5'], [6, '6'], [7, '7'],
@@ -121,7 +121,7 @@ class Consent(Page):
 
 class DefaultSMSPage(Page):
     form_model = 'player'
-    form_fields = ['manip1', 'manip2', 'threat_freedom', 'anger', 'understanding', 'intention']
+    form_fields = ['intention', 'manip1', 'manip2', 'threat_freedom', 'anger', 'understanding']
 
     def vars_for_template(player: Player):
 
@@ -144,12 +144,12 @@ class DefaultSMSPage(Page):
             image_file=image_file,
             intro = 'Stellen Sie sich vor, Sie erhalten folgende SMS-Nachricht, die Sie zur Blutspende einlädt. <br> <b> Bitte lesen Sie die Nachricht aufmerksam durch und bewerten Sie anschließend die unten stehenden Aussagen dazu.</b> <br> <br>',
             #intro2 = 'Bitte bewerten Sie die unten stehenden Aussagen zur SMS',
+            intention_q='Inwieweit motiviert Sie diese Nachricht, Blut zu spenden?',
             manip1_q = 'Ich habe das Gefühl, dass die Nachricht davon ausgeht, dass ich bereits beabsichtige, einen Blutspendetermin wahrzunehmen.',
             manip2_q = 'Ich habe das Gefühl, dass die Nachricht impliziert, dass eine Blutspende für mich der normale bzw. vorgesehene nächste Schritt ist.',
             threat_freedom_q='Die Nachricht hat versucht, mich unter Druck zu setzen.',
             anger_q='Die Nachricht hat mich genervt.',
             understanding_q='Ich habe klar verstanden, was die Nachricht sagen wollte.',
-            intention_q='Inwieweit motiviert Sie diese Nachricht, Blut zu spenden?',
         )
 
 

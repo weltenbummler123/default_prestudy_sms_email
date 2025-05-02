@@ -77,6 +77,22 @@
 
         <br>
 
+        <hr>
+
+        <p style="text-align: center; margin-bottom: 0px;">
+            <strong>{{intention_q}}</strong>
+        </p>
+
+        <div class="slider-container" style="display: flex; align-items: center; flex-grow: 1; ">
+            <span class="label-left">
+                Überhaupt nicht<br>(1)
+            </span>
+                {{ formfield 'intention' }}
+            <span class="label-right">
+                Sehr stark<br>(7)
+            </span>
+        </div>
+
          <hr>
 
             <p style="text-align: center; margin-bottom: 0px;">
@@ -153,22 +169,6 @@
                 Überhaupt nicht<br>(1)
             </span>
                 {{ formfield 'understanding' }}
-            <span class="label-right">
-                Sehr stark<br>(7)
-            </span>
-        </div>
-
-        <hr>
-
-        <p style="text-align: center; margin-bottom: 0px;">
-            <strong>{{intention_q}}</strong>
-        </p>
-
-        <div class="slider-container" style="display: flex; align-items: center; flex-grow: 1; ">
-            <span class="label-left">
-                Überhaupt nicht<br>(1)
-            </span>
-                {{ formfield 'intention' }}
             <span class="label-right">
                 Sehr stark<br>(7)
             </span>
