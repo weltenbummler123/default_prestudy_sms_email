@@ -10,8 +10,8 @@ Your app description
 class C(BaseConstants):
     NAME_IN_URL = 'prestudy_framing_email'
     PLAYERS_PER_GROUP = None
-    NUM_ROUNDS = 4
-    NUM_QUESTIONS = 4
+    NUM_ROUNDS = 5
+    NUM_QUESTIONS = 5
     EST_DURATION = 10
 
 class Subsession(BaseSubsession):
@@ -22,6 +22,7 @@ def creating_session(subsession):
     # Create a list of image paths and shuffle it in place
     email_images = [
         'global/email_opt_in.png',
+        'global/email_opt_out.png',
         'global/email_opt_out_ease.png',
         'global/email_opt_out_endowment.png',
         'global/email_opt_out_endorsement.png'
