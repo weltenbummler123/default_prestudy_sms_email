@@ -20,10 +20,10 @@ def creating_session(subsession):
 
     # Create a list of image paths and shuffle it in place
     opt_out_images = [
-        'global/opt_out_warten_bestaetigen.png',
-        'global/opt_out_warten_zusagen.png',
-        'global/opt_out_bereit_bestaetigen.png',
-        'global/opt_out_bereit_zusagen.png'
+        'global/opt_out_warten_bestaetigen_v2.png',
+        'global/opt_out_warten_zusagen_v2.png',
+        'global/opt_out_bereit_bestaetigen_v2.png',
+        'global/opt_out_bereit_zusagen_v2.png'
     ]
 
     for player in subsession.get_players():
@@ -129,12 +129,12 @@ class DefaultSMSPage(Page):
 
         if opt_in_first:
             if player.round_number == 1:
-                image_file = 'global/opt_in.png'
+                image_file = 'global/opt_in_v2.png'
             else:
                 image_file = player.participant.opt_out_shuffled[player.round_number - 2]
         else:
             if player.round_number == 5:
-                image_file = 'global/opt_in.png'
+                image_file = 'global/opt_in_v2.png'
             else:
                 image_file = player.participant.opt_out_shuffled[player.round_number-1]
 
@@ -168,7 +168,7 @@ class FormalInformal(Page):
 
     def vars_for_template(player: Player):
 
-        image_file = 'global/duSie.png'
+        image_file = 'global/duSie_v2.png'
 
         return dict(
             image_file=image_file,
