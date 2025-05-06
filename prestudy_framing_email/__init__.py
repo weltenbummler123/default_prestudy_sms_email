@@ -12,7 +12,7 @@ class C(BaseConstants):
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 5
     NUM_QUESTIONS = 5
-    EST_DURATION = 10
+    EST_DURATION = 8
 
 class Subsession(BaseSubsession):
     pass
