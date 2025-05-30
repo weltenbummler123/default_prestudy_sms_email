@@ -1,0 +1,115 @@
+{{ block title }}
+
+    <p style="text-align: center; font-size: 26px; "> Anmerkungen </p>
+
+{{ endblock }}
+
+{{ block style }}
+
+    <style>
+
+        body {
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin-top: 4vw;
+            background-color: #f4f4f4;
+        }
+
+        .responsive-div {
+            width: 100%; /* Default width */
+            transform-origin: top left; /* Ensure scaling starts from top-left */
+            transform: scale(1); /* Default scale */
+            transition: transform 0.3s ease; /* Smooth scaling */
+            border:0px solid black;
+            margin-left:auto;
+            margin-right:auto;
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            flex-wrap: nowrap;
+            gap: 5px;
+            min-width: 0; /* allows shrinking */
+        }
+
+        .slider-labels span {
+            flex: 1 1 0;
+            text-align: center;
+            min-width: 0;
+        }
+
+        .slider-container {
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+        }
+
+
+        .label-left {
+            margin-right: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .label-right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+
+    </style>
+
+{{ endblock }}
+
+{{ block content }}
+
+<div class="card-body">
+
+    {{ formfield player.comment_box }}
+
+    <div class="responsive-div">
+
+        <br>
+
+        <hr>
+
+        <br>
+
+        <p style="text-align: center; margin-bottom: 0px;">
+            <strong>{{reliability_q}}</strong>
+        </p>
+
+        <div class="slider-container" >
+            <span class="label-left">
+                Überhaupt nicht zuverlässig<br>(1)
+            </span>
+
+            <div class="slider-labels">
+                {{ formfield 'reliability' }}
+            </div>
+
+            <span class="label-right">
+                Sehr zuverlässig<br>(7)
+            </span>
+        </div>
+
+    </div>
+
+</div>
+
+    <div style="display: flex; justify-content: flex-end">
+        {{ next_button }}
+    </div>
+
+{{ endblock }}

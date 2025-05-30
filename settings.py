@@ -11,9 +11,25 @@ SESSION_CONFIGS = [
         oTree_version_used=popen('otree --version').read().strip()
     ),
     dict(
+        name='demographics_Germany',
+        display_name="demographics_Germany",
+        app_sequence=['demographics_Germany'],
+        num_demo_participants=6,
+        use_browser_bots=False,
+        oTree_version_used=popen('otree --version').read().strip()
+    ),
+    dict(
         name='prestudy_framing_sms',
         display_name="prestudy_framing_sms",
         app_sequence=['prestudy_framing_sms'],
+        num_demo_participants=6,
+        use_browser_bots=False,
+        oTree_version_used=popen('otree --version').read().strip()
+    ),
+    dict(
+        name='prestudy_framing_sms_BS_Germany',
+        display_name="prestudy_framing_sms_BS_Germany",
+        app_sequence=['prestudy_framing_sms_BS_Germany'],
         num_demo_participants=6,
         use_browser_bots=False,
         oTree_version_used=popen('otree --version').read().strip()
@@ -35,6 +51,14 @@ SESSION_CONFIGS = [
         oTree_version_used=popen('otree --version').read().strip()
     ),
     dict(
+        name='sms_survey_Germany',
+        display_name="Default survey (SMS, Germany)",
+        app_sequence=['prestudy_framing_sms_BS_Germany', 'demographics_Germany'],
+        num_demo_participants=6,
+        use_browser_bots=False,
+        oTree_version_used=popen('otree --version').read().strip()
+    ),
+    dict(
         name='email_survey',
         display_name="Default survey (E-Mail)",
         app_sequence=['prestudy_framing_email', 'demographics'],
@@ -50,10 +74,10 @@ SESSION_CONFIGS = [
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = dict(
-    real_world_currency_per_point=1.00, participation_fee=1.20, doc=""
+    real_world_currency_per_point=1.00, participation_fee=0.30, doc=""
 )
 
-PARTICIPANT_FIELDS = ['opt_out_shuffled', 'opt_in_first', 'email_shuffled']
+PARTICIPANT_FIELDS = ['opt_out_shuffled', 'opt_in_first', 'email_shuffled', 'condition_SMS']
 SESSION_FIELDS = []
 
 # ISO-639 code

@@ -1,0 +1,56 @@
+{{ block title }}
+
+    <p style="text-align: center; font-size: 26px; "> Vielen Dank! </p>
+
+
+{{ endblock }}
+
+{{ block style }}
+
+    <style>
+
+        body {
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin-top: 4vw;
+            background-color: #f4f4f4;
+        }
+
+    </style>
+
+{{ endblock }}
+
+{{ block content }}
+
+<div class="card-body">
+
+    <p>
+        <strong>Sie haben die Studie abgeschlossen – vielen Dank für Ihre Teilnahme!</strong>
+    </p>
+
+    <div class="panel panel-default" style="margin-bottom:10px">
+        <p></p>
+            <p>
+                Klicken Sie auf <b>„Weiter“</b>, um zu Prolific weitergeleitet zu werden. Ihre Vergütung wird sofort ausgezahlt.
+            </p>
+            <div style="display: flex; justify-content: flex-end">
+            {% next_button %}
+            </div>
+    </div>
+</div>
+
+    <!---div class="panel panel-default" style="margin-bottom:10px">
+        <div class="panel-body">
+            <p><b>Toluna</b></p>
+            <p>
+                <em>How does it work for participant? is there a platform they are registered to? or they just get an email?<br>
+                we should ask Toluna what to put at the end</em>
+            </p>
+        </div>
+    </---div>
+
+
+
+{{ endblock }}
+

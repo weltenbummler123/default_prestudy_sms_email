@@ -1,0 +1,98 @@
+{{ block title }}
+
+
+    <p style="text-align: center; font-size: 26px; "> Abschließende Fragen </p>
+
+{{ endblock }}
+
+{{ block style }}
+
+    <style>
+
+        body {
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin-top: 4vw;
+            background-color: #f4f4f4;
+        }
+
+    </style>
+
+{{ endblock }}
+
+{{ block content }}
+
+    <style>
+        label[for="id_born"] {
+            display: none;
+        }
+    </style>
+
+
+<div class="card-body">
+
+<!--    <p>-->
+<!--        Please answer the following questions. These are used for demographic purposes only.-->
+<!--        This information will not be associated with your name. You remain anonymous to all the other players and the experimenters.-->
+<!--    </p>-->
+
+
+    {{ formfield 'age' }}
+    {{ formfield 'gender' }}
+
+    {{ live_question }}
+    {{ form.live }}
+
+<!--    {{ formfield 'region' }}-->
+
+        <br>
+
+    <label for="region">{{ region_question }}</label>
+        <select name="region" id="region" required>
+            <option value="">Bitte auswählen</option>
+            <option value="Baden-Württemberg">Baden-Württemberg</option>
+            <option value="Bayern">Bayern</option>
+            <option value="Berlin">Berlin</option>
+            <option value="Brandenburg">Brandenburg</option>
+            <option value="Bremen">Bremen</option>
+            <option value="Hamburg">Hamburg</option>
+            <option value="Hessen">Hessen</option>
+            <option value="Mecklenburg-Vorpommern">Mecklenburg-Vorpommern</option>
+            <option value="Niedersachsen">Niedersachsen</option>
+            <option value="Nordrhein-Westfalen">Nordrhein-Westfalen</option>
+            <option value="Rheinland-Pfalz">Rheinland-Pfalz</option>
+            <option value="Saarland">Saarland</option>
+            <option value="Sachsen">Sachsen</option>
+            <option value="Sachsen-Anhalt">Sachsen-Anhalt</option>
+            <option value="Schleswig-Holstein">Schleswig-Holstein</option>
+            <option value="Thüringen">Thüringen</option>
+            <option value="Ich wohne nicht in Deutschland.">Ich wohne nicht in Deutschland.</option>
+        </select>
+
+    <br>
+    <br>
+
+    {{ grow_up_question }}
+    {{ form.grow_up }}
+
+    {{ formfield 'rural' }}
+
+    {{ donate_blood_ever_question }}
+    {{ form.donate_blood_ever }}
+    <br>
+    {{ donate_blood_last_2_years_question }}
+    {{ form.donate_blood_last_2_years }}
+
+
+
+
+
+    <div style="display: flex; justify-content: flex-end">
+        {% next_button %}
+    </div>
+
+</div>
+
+
+{{ endblock }}
