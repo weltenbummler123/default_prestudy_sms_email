@@ -1,0 +1,48 @@
+{{ block title }}
+
+    <p style="text-align: center; font-size: 26px; "> Vielen Dank! </p>
+
+{{ endblock }}
+
+{{ block style }}
+
+    body {
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin-top: 4vw;
+        background-color: #f4f4f4;
+    }
+
+{{ endblock }}
+
+
+{{ block content }}
+
+<div style="font-size: 14px">
+    <p> Sie werden in Kürze zu Prolific weitergeleitet, um Ihre Vergütung zu erhalten.</p>
+
+    <p>Wenn Sie nicht innerhalb von 5 Sekunden weitergeleitet werden, klicken Sie bitte auf diesen Link:
+        <b><a href="hhttps://app.prolific.com/submissions/complete?cc=C3KRF2W6"> https://app.prolific.com/submissions/complete?cc=C3KRF2W6 </a></b>
+    </p>
+    <p>
+        Wenn der Link nicht funktioniert, verwenden Sie bitte diesen Bestätigungscode: <b>C3KRF2W6</b>
+    </p>
+
+    <div style="display: flex; justify-content: flex-end">
+        {{ next_button }}
+    </div>
+
+</div>
+
+{{ endblock }}
+
+{{ block scripts }}
+
+    <script type="text/javascript">
+
+    window.location.replace("https://app.prolific.com/submissions/complete?cc=C3KRF2W6")
+
+    </script>
+
+{{ endblock }}

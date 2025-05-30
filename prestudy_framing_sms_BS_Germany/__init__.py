@@ -8,9 +8,9 @@ Your app description
 
 
 class C(BaseConstants):
-    NAME_IN_URL = 'prestudy_framing_sms'
+    NAME_IN_URL = 'prestudy_framing_sms_BS_Germany'
     PLAYERS_PER_GROUP = None
-    NUM_ROUNDS = 5
+    NUM_ROUNDS = 1
 
 
 class Subsession(BaseSubsession):
@@ -18,28 +18,12 @@ class Subsession(BaseSubsession):
 
 def creating_session(subsession):
 
-    # Create a list of image paths and shuffle it in place
-    opt_out_images = [
-        'global/opt_out_warten_bestaetigen_v2.png',
-        'global/opt_out_warten_zusagen_v2.png',
-        'global/opt_out_bereit_bestaetigen_v2.png',
-        'global/opt_out_bereit_zusagen_v2.png'
-    ]
-
     for player in subsession.get_players():
         participant = player.participant
 
-        participant.opt_in_first = random.choice([True, False])
-
-        opt_out_images_copy = opt_out_images.copy()
-        random.shuffle(opt_out_images_copy)
-        participant.opt_out_shuffled = opt_out_images_copy
-
-        # random.shuffle(opt_out_images) # Important: Shuffle is not assigned to participant, because opt_out_images as a list is a mutable object! All participants will be assigned the last shuffled order!
-        # participant.opt_out_shuffled = opt_out_images
-
-        print('set opt_out_shuffled to', participant.opt_out_shuffled)
-        print('set opt_in_first to', participant.opt_in_first)
+        participant.condition_SMS = random.choice(['opt_in', 'opt_out_warten_bestaetigen', 'opt_out_warten_zusagen'])
+        #participant.opt_in_first = random.choice([True, False])
+        print('set condition_SMS to', participant.condition_SMS)
 
 
 class Group(BaseGroup):
@@ -70,6 +54,20 @@ class Player(BasePlayer):
         widget=widgets.RadioSelectHorizontal
     )
     manip2 = models.IntegerField(
+        choices=[
+            [1, '1'], [2, '2'], [3, '3'], [4, '4'], [5, '5'], [6, '6'], [7, '7'],
+        ],
+        verbose_name='',
+        widget=widgets.RadioSelectHorizontal
+    )
+    manip3 = models.IntegerField(
+        choices=[
+            [1, '1'], [2, '2'], [3, '3'], [4, '4'], [5, '5'], [6, '6'], [7, '7'],
+        ],
+        verbose_name='',
+        widget=widgets.RadioSelectHorizontal
+    )
+    manip4 = models.IntegerField(
         choices=[
             [1, '1'], [2, '2'], [3, '3'], [4, '4'], [5, '5'], [6, '6'], [7, '7'],
         ],
@@ -126,59 +124,28 @@ class Consent(Page):
 
 class DefaultSMSPage(Page):
     form_model = 'player'
-    form_fields = ['intention', 'manip1', 'manip2', 'threat_freedom', 'anger', 'understanding']
+    form_fields = ['intention', 'manip3', 'manip4', 'manip1', 'manip2', 'threat_freedom', 'anger', 'understanding']
 
     def vars_for_template(player: Player):
 
-        opt_in_first = player.participant.opt_in_first
+        condition_SMS = player.participant.condition_SMS
 
-        if opt_in_first:
-            if player.round_number == 1:
-                image_file = 'global/opt_in_v2.png'
-            else:
-                image_file = player.participant.opt_out_shuffled[player.round_number - 2]
-        else:
-            if player.round_number == 5:
-                image_file = 'global/opt_in_v2.png'
-            else:
-                image_file = player.participant.opt_out_shuffled[player.round_number-1]
+        image_file = f"global/{condition_SMS}_v3.png"
 
-        player.treatment = image_file.split('/')[-1].split('.')[0] # Save treatment
+        player.treatment = condition_SMS
 
         return dict(
             image_file=image_file,
             intro = 'Stellen Sie sich vor, Sie erhalten folgende SMS-Nachricht, die Sie zur Blutspende einlädt. <br> <b> Bitte lesen Sie die Nachricht aufmerksam durch und bewerten Sie anschließend die unten stehenden Aussagen dazu.</b> <br> <br>',
             #intro2 = 'Bitte bewerten Sie die unten stehenden Aussagen zur SMS',
             intention_q='Inwieweit motiviert Sie diese Nachricht, Blut zu spenden?',
+            manip3_q='Ich habe das Gefühl, dass bereits eine Auswahl für einen Blutspendetermin für mich getroffen worden ist.',
+            manip4_q='Ich habe das Gefühl, dass ein Blutspendetermin für mich vorausgewählt worden ist.',
             manip1_q = 'Ich habe das Gefühl, dass die Nachricht davon ausgeht, dass ich bereits beabsichtige, einen Blutspendetermin wahrzunehmen.',
             manip2_q = 'Ich habe das Gefühl, dass die Nachricht impliziert, dass eine Blutspende für mich der normale bzw. vorgesehene nächste Schritt ist.',
             threat_freedom_q='Die Nachricht hat versucht, mich unter Druck zu setzen.',
             anger_q='Die Nachricht hat mich genervt.',
             understanding_q='Ich habe klar verstanden, was die Nachricht sagen wollte.',
-        )
-
-
-
-class FormalInformal(Page):
-
-    @staticmethod
-    def is_displayed(player: Player):
-        if player.round_number == 5:
-            return True
-        else:
-            return False
-
-    form_model = 'player'
-    form_fields = ['duSie']
-
-    def vars_for_template(player: Player):
-
-        image_file = 'global/duSie_v2.png'
-
-        return dict(
-            image_file=image_file,
-            intro='Stellen Sie sich vor, Sie erhalten folgende SMS-Nachrichten, die Sie zur Blutspende einladen. <br> <b> Bitte lesen Sie die Nachrichten aufmerksam durch und bewerten Sie anschließend die unten stehende Aussage dazu.</b> <br> <br>',
-            duSie_q = 'Würden Sie lieber mit „Sie“ (links) oder mit „du“ (rechts) angesprochen werden?',
         )
 
 
@@ -192,5 +159,4 @@ class Results(Page):
 
 page_sequence = [Consent,
                  DefaultSMSPage,
-                 FormalInformal,
                  ]
