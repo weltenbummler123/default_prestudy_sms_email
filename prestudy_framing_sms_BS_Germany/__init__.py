@@ -130,7 +130,7 @@ class DefaultSMSPage(Page):
 
         condition_SMS = player.participant.condition_SMS
 
-        image_file = f"global/{condition_SMS}_v3.png"
+        image_file = f"global/{condition_SMS}_v4.png"
 
         player.treatment = condition_SMS
 
