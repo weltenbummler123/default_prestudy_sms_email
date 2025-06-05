@@ -21,7 +21,7 @@ def creating_session(subsession):
     for player in subsession.get_players():
         participant = player.participant
 
-        participant.condition_SMS = random.choice(['opt_in', 'opt_out_warten_bestaetigen', 'opt_out_warten_zusagen'])
+        participant.condition_SMS = random.choice(['opt_in', 'opt_out_warten_zusagen'])
         #participant.opt_in_first = random.choice([True, False])
         print('set condition_SMS to', participant.condition_SMS)
 
@@ -138,11 +138,14 @@ class DefaultSMSPage(Page):
             image_file=image_file,
             intro = 'Stellen Sie sich vor, Sie erhalten folgende SMS-Nachricht, die Sie zur Blutspende einlädt. <br> <b> Bitte lesen Sie die Nachricht aufmerksam durch und bewerten Sie anschließend die unten stehenden Aussagen dazu.</b> <br> <br>',
             #intro2 = 'Bitte bewerten Sie die unten stehenden Aussagen zur SMS',
-            intention_q='Inwieweit motiviert Sie diese Nachricht, Blut zu spenden?',
-            manip3_q='Ich habe das Gefühl, dass bereits eine Auswahl für einen Blutspendetermin für mich getroffen worden ist.',
-            manip4_q='Ich habe das Gefühl, dass ein Blutspendetermin für mich vorausgewählt worden ist.',
-            manip1_q = 'Ich habe das Gefühl, dass die Nachricht davon ausgeht, dass ich bereits beabsichtige, einen Blutspendetermin wahrzunehmen.',
-            manip2_q = 'Ich habe das Gefühl, dass die Nachricht impliziert, dass eine Blutspende für mich der normale bzw. vorgesehene nächste Schritt ist.',
+            #intention_q='Inwieweit motiviert Sie diese Nachricht, Blut zu spenden?',
+            intention_q='Wie wahrscheinlich ist es, dass Sie infolge dieser Nachricht Blut spenden?',
+            manip3_q='Die Nachricht impliziert, dass bereits eine Auswahl für einen Blutspendetermin für mich getroffen wurde.',
+            manip4_q='Die Nachricht suggeriert, dass ich mich aktiv um den Blutspendetermin bemühen muss.',
+            #manip5_q='Ich habe das Gefühl, dass ein Blutspendetermin für mich vorausgewählt worden ist.',
+            manip1_q = 'Die Nachricht scheint davon auszugehen, dass ich bereits vorhabe, einen Blutspendetermin wahrzunehmen.',
+            #manip2_q = 'Die Nachricht impliziert, dass eine Blutspende für mich der vorgesehene nächste Schritt ist.',
+            manip2_q='Die Nachricht impliziert, dass eine Blutspende für mich bereits vorgesehen ist.',
             threat_freedom_q='Die Nachricht hat versucht, mich unter Druck zu setzen.',
             anger_q='Die Nachricht hat mich genervt.',
             understanding_q='Ich habe klar verstanden, was die Nachricht sagen wollte.',
