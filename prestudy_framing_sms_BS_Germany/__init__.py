@@ -21,7 +21,7 @@ def creating_session(subsession):
     for player in subsession.get_players():
         participant = player.participant
 
-        participant.condition_SMS = random.choice(['opt_in', 'opt_out_warten_zusagen'])
+        participant.condition_SMS = random.choice(['opt_in_koennen', 'opt_out_vorschlagen', 'opt_in_einladen_long', 'opt_out_vorschlagen_long'])
         #participant.opt_in_first = random.choice([True, False])
         print('set condition_SMS to', participant.condition_SMS)
 
@@ -130,7 +130,7 @@ class DefaultSMSPage(Page):
 
         condition_SMS = player.participant.condition_SMS
 
-        image_file = f"global/{condition_SMS}_v4.png"
+        image_file = f"global/{condition_SMS}.png"
 
         player.treatment = condition_SMS
 
